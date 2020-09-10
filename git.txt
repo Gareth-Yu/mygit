@@ -161,7 +161,6 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 		$ git push -u origin master
 
 
-
-
-
+远程库已经准备好了，下一步是用命令git clone克隆一个本地库
+	$ git clone git@github.com:michaelliao/gitskills.git
 
