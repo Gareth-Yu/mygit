@@ -127,11 +127,38 @@ git checkout其实是用版本库里的版本替换工作区的版本，无论�
 
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
+使用下面的命令顺序可以找回删除的文件：
+
+	【git log --pretty=oneline】查看提交的版本日志 → 【git reset commitID test.txt】  → 【git checkout -- test.txt】将文件从暂存区拿回到工作区
 
 
+		因为你用的是【git rm】命令来删除的文件，这个命令是删除了Git暂存区的test.txt文件，此时你再用【git checkout -- <filename>】命令的话，Git就会提示你匹配不到文件。
+
+		。【git checkout -- <filename>】：是将工作区恢复成暂存区样子；
+
+		你必须先使用【git reset  <file>】命令，将删除的文件从Git版本库拉回到你的暂存区中，然后再使用【git checkout -- <filename>】命令来将该文件拉回到你的工作区中。
+
+		* 请注意1：【git reset  HEAD <file>】命令，如果HEAD上也没有这个test.txt文件的话，执行该命令后Git同样会报错，提示你匹配不到文件。原因是你按照廖老师的学习步骤学习的：
+
+		【git rm <file>】删除文件 → 【git add 'add test.txt'】暂存本次删除申请 → 【git commit -m'remove test.txt'】提交本次删除申请到HEAD
+
+		所以，如果你直接使用命令【git reset  HEAD test.txt】想想问什么会提示你匹配不到文件呢？因为现在HEAD上已经没有这个test.txt文件了！
+
+		怎么办呢？我们使用下面的命令顺序可以找回删除的文件：
+
+		【git log --pretty=oneline】查看提交的版本日志 → 【git reset commitID test.txt】这里的commitID使用的是'add test.txt'这次的提交ID → 【git checkout -- test.txt】将文件从暂存区拿回到工作区
+
+		* 请注意2：如果在'add test.txt'中间对test.txt有多次修改，并且没有提交被Git管理起来的话，这些修改就都丢失了！
 
 
+连接远程管理github
 
+	在GitHub中，添加一个repo, 然后选择SSH， 在设置中选择SSH设置，把下面key添加进去
+
+		$ ssh-keygen -t rsa -C "1048174150@qq.com"
+		$ git remote set-url origin git@github.com:Gareth-Yu/mygit.git
+		$ git branch -M master
+		$ git push -u origin master
 
 
 
