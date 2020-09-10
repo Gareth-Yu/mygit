@@ -1,0 +1,28 @@
+
+
+
+
+
+
+$ git config --global user.name "Gareth"               
+$ git config --global user.emain "1048174150@qq.com"
+
+
+
+
+创建一个版本库
+	$ mkdir learngit
+	$ cd learngit
+	$ pwd
+	$ git init   通过git init命令把这个目录变成Git可以管理的仓库
+
+添加文件到Git仓库，分两步：
+
+	使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+	使用命令git commit -m <message>，完成。
+
+Q：输入git add readme.txt，得到错误：fatal: not a git repository (or any of the parent directories)。
+A：Git命令必须在Git仓库目录内执行（git init除外），在仓库目录外执行是没有意义的。
+
+Q：输入git add readme.txt，得到错误fatal: pathspec 'readme.txt' did not match any files。
+A：添加某个文件时，该文件必须在当前目录下存在，用ls或者dir命令查看当前目录的文件，看看文件是否存在，或者是否写错了文件名。
