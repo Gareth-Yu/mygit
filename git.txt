@@ -16,10 +16,10 @@ These are common Git commands used in various situations:
 
 start a working area (see also: git help tutorial)
    clone             Clone a repository into a new directory
-   init              Create an empty Git repository or reinitialize an existing one， 参考示例
+   init              Create an empty Git repository or reinitialize an existing one，
 
 work on the current change (see also: git help everyday)
-   add               Add file contents to the index										参考示例
+   add               Add file contents to the index									
    mv                Move or rename a file, a directory, or a symlink
    restore           Restore working tree files
    rm                Remove files from the working tree and from the index
@@ -53,11 +53,8 @@ to read about a specific subcommand or concept.
 See 'git help git' for an overview of the system.
 
 
-
-
 $ git config --global user.name "Gareth"               
 $ git config --global user.emain "1048174150@qq.com"
-
 
 
 创建一个版本库
@@ -105,10 +102,13 @@ Git提供了一个命令git reflog用来记录你的每一次命令：
 $ git status  查看状态
 
 
+提交后，用git diff HEAD -- readme.txt命令可以查看工作区和版本库里面最新版本的区别：
+Git是如何跟踪修改的，每次修改，如果不用git add到暂存区，那就不会加入到commit中。
 
 
-
-
-
+管理修改
+	场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+	场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+	场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
 
